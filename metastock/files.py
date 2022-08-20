@@ -151,6 +151,7 @@ class DatFile:
             # not sure about this, but it seems to work
             file_handle.seek((self.stock.fields - 1) * 4, os.SEEK_CUR)
 
+            # TODO change here to store result 
             #print("Expecting %d candles in file %s. num_fields : %d" % \
             #   (self.last_rec - 1, self.stock.filename, self.stock.fields))
             outfile = open('%s.TXT' % self.stock.stock_symbol, 'w')
@@ -191,6 +192,7 @@ class DatFile:
 
 
 def dump_stock_to_file(stock):
+    # TODO export made in here we will use rest or kafka to take results 
     print("Processing %s (fileNo %d)" % (stock.stock_symbol, stock.file_number))
     try:
         file = DatFile(stock)
@@ -226,6 +228,7 @@ class MSMasterFile:
         self.encoding = encoding
 
     def load(self):
+        # TODO add path support 
         if os.path.isfile('MASTER'):
             self.file_handle = open('MASTER', 'rb')
             self.reconds_count = struct.unpack("H", self.file_handle.read(2))[0]
